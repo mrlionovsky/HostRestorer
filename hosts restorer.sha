@@ -1,0 +1,285 @@
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,2953706,21,77)
+{
+ Width=235
+ Height=225
+ Caption="Hosts Restorer 1.0"
+ BorderStyle=3
+ Icon=[ZIPBE08000078DABD94BD6E13411080C70A52A2BB48511A5A2257F4F30214AED3F915E601DCB8C425AFB05D0A8410AF40E31A5D8F2D9FAD3C42E4344420966F76EFCF765044C39E3FFFCCB7B337FB73161971DDDC486A9F2F445EF3F9163CF40E467291DCE295F46D34F82E8BF492C5227FF8C597E57229CB7A290FDF3E4915A30430508855940A021828D04962200E010C14489468C421808102834954E210C040413C26C4C04021C68AE12B86AA48CB2850082F1C04305020402DC4218081029DA8853804305020915A88430003050613AFC6AF00060AE215462210C040819B520F710860A0402128E210C040811FD4431C021828D0817A884300030592D2CA78357E192888AF56A43A0860A0C0E0D4431C0218287043EA210E010C14288214E210C040812FD4431C02182820D32E55A9124B9782F8CE45560A0218283008F5108700060A0C4C3DC42180810237A31EE210C0408102188A38043050E02D9D982AAD8AA66AFC128FE5A3E8C7CE8F981F1D3F267E247CFB7DAB7D5B7D0B7DBB7C6B7C1B7CC97D797D297DD97C897C397C8A3E7D9F9297EFA57A595E82DF2E9D9290BBA50A44B6F015BEC00798C31426307E596FB7329D4E653E9F272693898CC763B9BEBE3EEE2A0F3FA37CBCBBE339F6273AA697F8739B7EF9F3E43FA3FC432B522B53BBCCED50EE76BBA2F8DEB4D56A35F0490EFDF37AD6FAE775E7D165799A3D6BFCCA5BD9E50FB2935FAD0E3A34E9B33CBF4ED3E1203DEBC24571EA9BECE49B5E8D2F8E7DD1F932A7CF76B34E17ABB6DB7EBFCF7E962776D85CEFDBFCD9F6C4EF7BEF7AFB775FBA7ED6AFB3775DE768DDFBF57EBD2E9AFC6D5D2753DF1EE8C697DB3A77A86F3BEFFAB1485ECAA491B79D4FFA316B0668F56633D4AD97B2D39BEEDEAE3B5FB67AE3133BD6DEA1D14F7DF6E350D78D7EEAEFDDA75FF63AE51F0D2E97ADCEF93EEFA1169EA3B269CDF4E5FFB5782F67FC0B8C7EC32F91B31F22E70F2257F77CC2D97200FF24A39768FBDE67DAB1AE88BD81F7CB74CBF3D8B63F371DC86A]
+ Position=1
+ link(onCreate,10373047:doEvent1,[(72,97)(72,76)])
+}
+Add(Button,3154812,21,154)
+{
+ Left=15
+ Top=10
+ Width=195
+ Height=55
+ HintManager=""
+ Caption="Сбросить hosts к оригиналу"
+ link(onClick,2622436:doCurrentDir,[(65,160)(65,167)])
+}
+Add(Dir,2622436,77,154)
+{
+ Point(WindowsDir)
+ link(onEnd,4902887:doStrCatDlm,[])
+}
+Add(StrCatDelim,4902887,133,154)
+{
+ Delimiter="\"
+ Str2="System32\drivers\etc\hosts"
+ link(onStrCatDlm,12949047:doDelete,[(175,185)(208,185)(208,209)])
+ link(Str1,2622436:WindowsDir,[(139,142)(125,142)(125,198)(111,198)])
+}
+Add(FileTools,12949047,224,189)
+{
+ DelToRecycle=1
+ link(onEnd,12386503:doCurrentDir,[(268,195)(268,202)])
+ link(FileName,4902887:Result,[(230,167)(139,167)])
+}
+Add(Button,11358432,18,263)
+{
+ Left=15
+ Top=70
+ Width=195
+ HintManager=""
+ Caption="Забэкапить файл hosts"
+ link(onClick,7915660:doCurrentDir,[(62,269)(62,299)(37,299)(37,328)(67,328)(67,307)])
+}
+Add(Dir,4920080,413,168)
+{
+ Point(WindowsDir)
+ link(onEnd,7813480:doStrCatDlm,[])
+}
+Add(StrCatDelim,7813480,469,168)
+{
+ Delimiter="\"
+ Str2="System32\drivers\etc\hosts"
+ link(onStrCatDlm,8243698:doCopy,[(513,174)(513,216)(387,216)(387,258)])
+ link(Str1,4920080:WindowsDir,[(475,156)(461,156)(461,212)(447,212)])
+}
+Add(FileTools,8243698,399,245)
+{
+ DelToRecycle=1
+ link(onEnd,6931524:doStrCat,[])
+ link(FileName,5478311:Result,[(405,232)(380,232)(380,233)(349,233)])
+ link(NewFileName,7813480:Result,[(412,223)(475,223)])
+}
+Add(Dir,12386503,280,189)
+{
+ Point(WindowsDir)
+ link(onEnd,5478311:doStrCatDlm,[])
+}
+Add(StrCatDelim,5478311,343,189)
+{
+ Delimiter="\"
+ Str2="hosts"
+ link(onStrCatDlm,4920080:doCurrentDir,[(394,195)(394,181)])
+ link(Str1,12386503:CurrentDir,[(349,177)(317,177)(317,233)(286,233)])
+}
+Add(Dir,7915660,105,294)
+{
+ Point(WindowsDir)
+ link(onEnd,1750905:doStrCatDlm,[])
+}
+Add(StrCatDelim,1750905,161,294)
+{
+ Delimiter="\"
+ Str2="System32\drivers\etc\hosts"
+ link(onStrCatDlm,726338:doCurrentDir,[(205,300)(205,346)(93,346)(93,391)])
+ link(Str1,7915660:WindowsDir,[(167,282)(153,282)(153,338)(139,338)])
+}
+Add(FileTools,13147535,252,329)
+{
+ DelToRecycle=1
+ link(onEnd,1108492:doStrCat,[])
+ link(FileName,1750905:Result,[(258,307)(167,307)])
+ link(NewFileName,5200405:Result,[(265,317)(216,317)(216,436)(167,436)])
+}
+Add(Dir,726338,105,378)
+{
+ Point(WindowsDir)
+ link(onEnd,5200405:doStrCatDlm,[(152,384)(152,398)])
+}
+Add(StrCatDelim,5200405,161,392)
+{
+ Delimiter="\"
+ Str2="System32\drivers\etc\hosts.litv"
+ link(onStrCatDlm,13147535:doCopy,[(223,398)(223,342)])
+ link(Str1,726338:WindowsDir,[(167,380)(153,380)(153,422)(139,422)])
+}
+Add(Button,16755159,26,453)
+{
+ Left=15
+ Top=95
+ Width=195
+ HintManager=""
+ Caption="Восстановить файл hosts"
+ link(onClick,4439490:doCurrentDir,[(71,459)(71,475)(122,475)(122,482)])
+}
+Add(Edit,564949,749,231)
+{
+ Left=15
+ Top=125
+ Width=195
+ Cursor=9
+ Text="Ожидаю команды..."
+ Alignment=2
+ ReadOnly=0
+}
+Add(StrCat,6931524,448,245)
+{
+ Str1="Сбросили файл hosts!"
+ link(onStrCat,14424786:doEvent1,[(576,251)(576,230)])
+}
+Add(Hub,14424786,672,224)
+{
+ InCount=4
+ OutCount=1
+ link(onEvent1,564949:doText,[(718,230)(718,237)])
+}
+Add(StrCat,1108492,308,329)
+{
+ Str1="Забэкаплено в /etc/host.litv"
+ link(onStrCat,14424786:doEvent2,[(506,335)(506,237)])
+}
+Add(Dir,4439490,147,469)
+{
+ Point(WindowsDir)
+ link(onEnd,1337593:doStrCatDlm,[])
+}
+Add(StrCatDelim,1337593,203,469)
+{
+ Delimiter="\"
+ Str2="System32\drivers\etc\hosts"
+ link(onStrCatDlm,9263678:doCurrentDir,[(247,475)(247,521)(135,521)(135,566)])
+ link(Str1,4439490:WindowsDir,[(209,457)(195,457)(195,513)(181,513)])
+}
+Add(Dir,9263678,147,553)
+{
+ Point(WindowsDir)
+ link(onEnd,8707741:doStrCatDlm,[(194,559)(194,573)])
+}
+Add(StrCatDelim,8707741,203,567)
+{
+ Delimiter="\"
+ Str2="System32\drivers\etc\hosts.litv"
+ link(onStrCatDlm,12225164:doCopy,[(279,573)(279,503)])
+ link(Str1,9263678:WindowsDir,[(209,555)(195,555)(195,597)(181,597)])
+}
+Add(FileTools,12225164,322,490)
+{
+ DelToRecycle=1
+ link(onEnd,11117720:doStrCat,[])
+ link(FileName,8707741:Result,[(328,464)(290,464)(290,611)(209,611)])
+ link(NewFileName,1337593:Result,[(335,473)(267,473)(267,513)(209,513)])
+}
+Add(StrCat,11117720,385,490)
+{
+ Str1="Восстановили файл hosts!"
+ link(onStrCat,14424786:doEvent3,[(513,496)(513,244)])
+}
+Add(Dir,6199687,322,70)
+{
+ Point(WindowsDir)
+ link(onEnd,9016844:doStrCatDlm,[(369,76)(369,90)])
+}
+Add(StrCatDelim,9016844,378,84)
+{
+ Delimiter="\"
+ Str2="hosts"
+ link(onStrCatDlm,562891:doFileExists,[(426,90)(426,111)])
+ link(Str1,6199687:CurrentDir,[(384,72)(356,72)(356,114)(328,114)])
+}
+Add(FileTools,562891,441,84)
+{
+ DelToRecycle=1
+ link(onEnd,4621627:doCompare,[])
+}
+Add(If_else,4621627,497,84)
+{
+ Op2=Integer(0)
+ link(onTrue,7638866:doMessage,[])
+}
+Add(Message,7638866,546,84)
+{
+ Message="Не найден файл hosts в папке с программой.\r\n\r\nПроверьте, что в папке с программой есть файл hosts - он нужен \r\nдля корректного восстановления его же в папке винды.\r\n\r\nЕсли вы скачали программу с стороннего ресурса - передайте\r\nрелизёру лучей ректального добра, и скачайте оригинал на\r\nhttp://lionovsky.us   \r\n\r\nА пока программа будет закрыта."
+ Caption="Блядушки-оладушки"
+ Icon=1
+ Point(onOK)
+ link(onOK,2953706:doClose,[(520,97)(520,101)(9,101)(9,104)])
+}
+Add(AdminAppEx,11110354,168,14)
+{
+}
+Add(Hub,10373047,91,70)
+{
+ link(onEvent1,6199687:doCurrentDir,[(217,76)(217,83)])
+ link(onEvent2,11110354:doElevatePrivilege,[(137,83)(137,27)])
+}
+Add(Button,6885924,28,637)
+{
+ Left=15
+ Top=155
+ Width=95
+ Caption="О программе"
+ link(onClick,7415143:doMessage,[])
+}
+Add(Button,11799820,25,718)
+{
+ Left=115
+ Top=155
+ Width=95
+ Caption="Мануал"
+ link(onClick,13661873:doVisible,[(67,724)(67,727)])
+}
+Add(Message,7415143,105,637)
+{
+ Message="(c) Lionovsky, 2018\r\nhttp://lionovsky.us\r\n\r\nПолезная штуко, однако!"
+ Caption="О программе"
+ DefButton=1
+}
+Add(ChildFormEx,13661873,77,721)
+{
+}
+BEGIN_SDK
+  Add(EditMultiEx,13822035,21,21)
+  {
+   WorkCount=#9:doVisible|
+   DataCount=#9:doRestore|
+   link(doVisible,242850:doVisible,[(28,27)(28,139)])
+  }
+  Add(MainForm,242850,49,105)
+  {
+   Left=35
+   Top=105
+   Width=526
+   Height=340
+   Visible=1
+   Caption="Мануал"
+   BorderStyle=3
+   Icon=[ZIPBE08000078DABD94BD6E13411080C70A52A2BB48511A5A2257F4F30214AED3F915E601DCB8C425AFB05D0A8410AF40E31A5D8F2D9FAD3C42E4344420966F76EFCF765044C39E3FFFCCB7B337FB73161971DDDC486A9F2F445EF3F9163CF40E467291DCE295F46D34F82E8BF492C5227FF8C597E57229CB7A290FDF3E4915A30430508855940A021828D04962200E010C14489468C421808102834954E210C040413C26C4C04021C68AE12B86AA48CB2850082F1C04305020402DC4218081029DA8853804305020915A88430003050613AFC6AF00060AE215462210C040819B520F710860A0402128E210C040811FD4431C021828D0817A884300030592D2CA78357E192888AF56A43A0860A0C0E0D4431C0218287043EA210E010C14288214E210C040812FD4431C02182820D32E55A9124B9782F8CE45560A0218283008F5108700060A0C4C3DC42180810237A31EE210C0408102188A38043050E02D9D982AAD8AA66AFC128FE5A3E8C7CE8F981F1D3F267E247CFB7DAB7D5B7D0B7DBB7C6B7C1B7CC97D797D297DD97C897C397C8A3E7D9F9297EFA57A595E82DF2E9D9290BBA50A44B6F015BEC00798C31426307E596FB7329D4E653E9F272693898CC763B9BEBE3EEE2A0F3FA37CBCBBE339F6273AA697F8739B7EF9F3E43FA3FC432B522B53BBCCED50EE76BBA2F8DEB4D56A35F0490EFDF37AD6FAE775E7D165799A3D6BFCCA5BD9E50FB2935FAD0E3A34E9B33CBF4ED3E1203DEBC24571EA9BECE49B5E8D2F8E7DD1F932A7CF76B34E17ABB6DB7EBFCF7E962776D85CEFDBFCD9F6C4EF7BEF7AFB775FBA7ED6AFB3775DE768DDFBF57EBD2E9AFC6D5D2753DF1EE8C697DB3A77A86F3BEFFAB1485ECAA491B79D4FFA316B0668F56633D4AD97B2D39BEEDEAE3B5FB67AE3133BD6DEA1D14F7DF6E350D78D7EEAEFDDA75FF63AE51F0D2E97ADCEF93EEFA1169EA3B269CDF4E5FFB5782F67FC0B8C7EC32F91B31F22E70F2257F77CC2D97200FF24A39768FBDE67DAB1AE88BD81F7CB74CBF3D8B63F371DC86A]
+   TaskBar=1
+   Point(doVisible)
+  }
+  Add(RichEdit,8398736,105,91)
+  {
+   Left=10
+   Top=10
+   Width=500
+   Height=260
+   Strings=#76:Hosts Restorer - это утилита для бэкапирования, восстановления, и управления|62:файлом hosts, что находится в C:\Windows\System32\drivers\etc.|0:|41:Программа имеет несколько режимов работы:|0:|63:1. Восстановление файла hosts из зараннее изготовленного файла.|72:Это - большая кнопка "сбросить hosts к оригиналу". По её нажатию в \etc\|57:запишется файл hosts, расположенный в папке с программой.|68:По умолчанию там лежит "чистый" файл из дефолтной виндовой поставки.|0:|74:Эту фичу можно использовать не только для восстановления файла hosts, но и|77:для его шустрой замены на клиентских машинах например, или при переустановке |6:винды.|0:|56:Просто измените файл hosts в папке с программой на свой.|0:|48:2. Режим сохранения резервной копии файла hosts.|74:При нажатии кнопки "Забэкапить файл hosts" программа создаст его резервную|58:копию в файле C:\Windows\System32\drivers\etc\hosts.litv .|78:Кнопкой "Восстановить файл hosts" вы сможете легко и просто восстановить файл |14:из этой копии.|0:|31:Удачного лечения вирусни! :)   |0:|67:P.S. Чистота программы гарантируется только если утилита скачана с |38:http://lionovsky.us, и только оттуда. |80:P.P.S. Если вы скачали это со всяких депозитфаллос, или заплатили за программу -|48:смело бейте морду тому, кто так выложил утилиту.|79:P.P.P.S. Во всяких IT-конторах оказывающих услуги, утилиту юзать можно и нужно.|0:|
+   ScrollBars=2
+   ReadOnly=0
+   CanDragOle=1
+  }
+  Add(Button,14838992,105,161)
+  {
+   Left=415
+   Top=275
+   Width=95
+   Caption="ОК"
+   link(onClick,242850:doClose,[(149,167)(149,149)(23,149)(23,132)])
+  }
+END_SDK
